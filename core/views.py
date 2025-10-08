@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Aluno
+from .forms import AlunoForm
 
 def inicio(request):
     # Lógica para o painel inicial
@@ -25,14 +26,15 @@ def cadastrar_aluno(request):
         
     # 6. Envia o formulário (preenchido ou vazio) para o template
     return render(request, 'cadastrar_aluno.html', {'form': form})
+
 def mensalidades(request):
-    # Lógica para mensalidades virá aqui no futuro
+    # No futuro, aqui você buscaria as mensalidades do banco de dados
     return render(request, 'mensalidades.html')
 
 def relatorios(request):
-    # Lógica para relatórios virá aqui no futuro
+    # No futuro, aqui você prepararia os dados para os gráficos
     return render(request, 'relatorios.html')
 
 def configuracoes(request):
-    # Lógica para configurações virá aqui no futuro
+    # No futuro, aqui você carregaria e salvaria as configurações
     return render(request, 'configuracoes.html')

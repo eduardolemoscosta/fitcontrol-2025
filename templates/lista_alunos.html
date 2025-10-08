@@ -10,7 +10,11 @@
     <h3>Alunos Cadastrados</h3>
     <ul class="student-list">
         {% for aluno in alunos %}
-            <li>{{ aluno.nome }} (CPF: {{ aluno.cpf }}) - E-mail: {{ aluno.email }}</li>
+            <li>{{ aluno.nome }}
+                <br>
+                CPF: {{ aluno.cpf }}
+                <br>
+                mail: {{ aluno.email }}</li>
         {% empty %}
             <li>Nenhum aluno cadastrado.</li>
         {% endfor %}
