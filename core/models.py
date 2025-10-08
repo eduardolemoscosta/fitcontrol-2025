@@ -13,3 +13,13 @@ class Aluno(models.Model):
 
     def __str__(self):
         return self.nome
+
+class Mensalidade(models.Model):
+    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE, related_name='mensalidades')
+    valor = models.DecimalField(max_digits=8, decimal_places=2)
+    data_vencimento = models.DateField(verbose_name="Data de Vencimento")
+    paga = models.BooleanField(default=False)
+
+    def __str__(self):
+        status = "Paga" if self.paga else "Pendente"
+        return f"Mensalidade de {self.aluno.nome} - Venc: {self.data_vencimento.strftime('%d/%m/%Y')} ({status})"
