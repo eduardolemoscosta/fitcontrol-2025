@@ -1,0 +1,240 @@
+/* static/css/style.css */
+
+/* ---- CONFIGURAÇÕES GLOBAIS E VARIÁVEIS DO NOVO DESIGN ---- */
+:root {
+    --primary-blue: #4A90E2; /* Azul principal mais suave */
+    --primary-blue-dark: #357ABD;
+    --sidebar-dark-bg: #1A202C; /* Fundo escuro da sidebar */
+    --sidebar-text: #A0AEC0; /* Texto cinza claro da sidebar */
+    --sidebar-text-hover: #FFFFFF; /* Texto branco ao passar o mouse */
+    --main-bg: #F7FAFC; /* Fundo principal quase branco */
+    --card-bg: #FFFFFF; /* Fundo branco dos cards e inputs */
+    --card-container-bg: #EDF2F7; /* Fundo do container cinza claro */
+    --text-color-dark: #2D3748; /* Texto escuro principal */
+    --text-color-light: #718096; /* Texto secundário cinza */
+    --border-color: #E2E8F0;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --border-radius-main: 1rem; /* 16px */
+    --border-radius-small: 0.75rem; /* 12px */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--main-bg);
+    color: var(--text-color-dark);
+}
+
+/* ---- LAYOUT PRINCIPAL ---- */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    flex: 0 0 260px;
+    background-color: var(--sidebar-dark-bg);
+    padding: 2.5rem 1.5rem;
+}
+
+.main-content {
+    flex: 1;
+    padding: 2.5rem;
+    overflow-y: auto;
+}
+
+/* ---- BARRA LATERAL (SIDEBAR) ---- */
+.logo {
+    color: var(--primary-blue);
+    text-align: left;
+    margin-bottom: 3.5rem;
+    font-weight: 600;
+    font-size: 1.8rem;
+    padding-left: 0.5rem;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+}
+
+.sidebar-nav li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-nav a {
+    text-decoration: none;
+    color: var(--sidebar-text);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 1rem;
+    border-radius: var(--border-radius-small);
+    transition: all 0.2s ease-in-out;
+}
+
+.sidebar-nav a:hover {
+    color: var(--sidebar-text-hover);
+    background-color: #2D3748; /* Tom de cinza escuro um pouco mais claro */
+}
+
+.sidebar-nav a.active {
+    color: var(--sidebar-text-hover);
+    background-color: #2D3748;
+}
+
+.sidebar-nav a i {
+    font-size: 1.1rem;
+    width: 20px; /* Alinha os textos */
+    text-align: center;
+}
+
+/* ---- CONTEÚDO PRINCIPAL ---- */
+.page-header h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: var(--text-color-dark);
+}
+
+/* ---- COMPONENTES ---- */
+.card { /* Este é o container cinza claro que envolve o conteúdo */
+    background-color: var(--card-container-bg);
+    padding: 2.5rem;
+    border-radius: var(--border-radius-main);
+}
+
+.btn {
+    padding: 0.8rem 1.8rem;
+    border: none;
+    border-radius: var(--border-radius-small);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-blue);
+    color: #FFF;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-blue-dark);
+}
+
+.btn-secondary {
+    background-color: var(--card-bg);
+    color: var(--text-color-light);
+    border: 1px solid var(--border-color);
+}
+.btn-secondary:hover {
+    background-color: #fdfdfd;
+}
+
+/* ---- FORMULÁRIOS ---- */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+.form-grid .full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: none;
+    border-radius: var(--border-radius-small);
+    background-color: var(--card-bg);
+    color: var(--text-color-dark);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}
+.form-group input::placeholder, .form-group textarea::placeholder {
+    color: var(--text-color-light);
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    grid-column: 1 / -1; /* Ocupa a largura toda no grid */
+    margin-top: 1rem;
+}
+
+/* ---- ELEMENTOS ESPECÍFICOS ---- */
+
+/* TELA DE ALUNOS */
+.student-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.student-list li {
+    background-color: var(--card-bg);
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius-small);
+    box-shadow: var(--shadow);
+    font-weight: 500;
+}
+
+.student-actions {
+    margin-top: 2rem;
+    text-align: right;
+}
+
+/* TELA DE MENSALIDADES */
+.mensalidades-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+}
+.mensalidades-list .item {
+    background-color: var(--card-bg);
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius-small);
+    box-shadow: var(--shadow);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.mensalidades-list .item i {
+    color: var(--primary-blue);
+}
+
+/* TELA DE RELATÓRIOS */
+.chart-container {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius-small);
+    box-shadow: var(--shadow);
+}
+/* Para simular o gráfico (ideal seria usar uma biblioteca JS como Chart.js) */
+.chart-placeholder {
+    width: 100%;
+    height: 300px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23E2E8F0' stroke-width='4' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color-light);
+    font-style: italic;
+    border-radius: var(--border-radius-small);
+}

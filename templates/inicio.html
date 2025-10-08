@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<header class="page-header">
+    <h2>Painel Inicial</h2>
+</header>
+
+<div class="card">
+
+    <div class="welcome-banner">
+        <h3>Bem-vindo ao FitControl!</h3>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="dashboard-card">
+            <h4>Alunos Ativos</h4>
+            <p>125</p> </div>
+        <div class="dashboard-card">
+            <h4>Mensalidades Pendentes</h4>
+            <p>12</p>
+        </div>
+        <div class="dashboard-card">
+            <h4>Aulas Agendadas</h4>
+            <p>34</p>
+        </div>
+    </div>
+
+    <div class="dashboard-actions">
+        <a href="{% url 'cadastrar_aluno' %}" class="btn btn-action btn-blue">
+            <i class="fa-solid fa-user-plus"></i> Registrar Aluno
+        </a>
+        <a href="#" class="btn btn-action btn-green">
+            <i class="fa-solid fa-dollar-sign"></i> Ver Mensalidades
+        </a>
+        <a href="#" class="btn btn-action btn-pink">
+            <i class="fa-solid fa-chart-line"></i> Ver Relatórios
+        </a>
+        <a href="#" class="btn btn-action btn-red">
+            <i class="fa-solid fa-gear"></i> Configurações
+        </a>
+    </div>
+
+</div>
+{% endblock %}

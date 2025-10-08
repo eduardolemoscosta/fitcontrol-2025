@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FitControl{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <h1 class="logo">FitControl</h1>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="{% url 'inicio' %}"><i class="fa-solid fa-house"></i> Início</a></li>
+                    <li><a href="{% url 'lista_alunos' %}"><i class="fa-solid fa-users"></i> Alunos</a></li>
+                    <li><a href="{% url 'cadastrar_aluno' %}"><i class="fa-solid fa-user-plus"></i> Cadastrar Alunos</a></li>
+                    <li><a href="#"><i class="fa-solid fa-file-invoice-dollar"></i> Mensalidades</a></li>
+                    <li><a href="#"><i class="fa-solid fa-chart-line"></i> Relatórios</a></li>
+                    <li><a href="#"><i class="fa-solid fa-gear"></i> Configurações</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+
+    </body>
+</html>
