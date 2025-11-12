@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Excluir Plano - {{ block.super }}{% endblock %}
+
+{% block content %}
+<header class="page-header">
+    <h2>Excluir Plano de Mensalidade</h2>
+</header>
+
+<div class="card">
+    <p>Tem certeza que deseja excluir o plano <strong>{{ plano.descricao }}</strong> - R$ {{ plano.valor|floatformat:2 }}?</p>
+    <p class="text-warning">Esta ação não pode ser desfeita.</p>
+
+    <form method="POST" class="form-buttons" style="margin-top: 2rem;">
+        {% csrf_token %}
+        <a href="{% url 'mensalidades' %}" class="btn btn-secondary">Cancelar</a>
+        <button type="submit" class="btn btn-danger">Excluir</button>
+    </form>
+</div>
+{% endblock %}
+

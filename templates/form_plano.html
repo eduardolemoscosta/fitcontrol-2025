@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ titulo }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<header class="page-header">
+    <h2>{{ titulo }}</h2>
+</header>
+
+<div class="card">
+    <form class="form-grid" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group full-width">
+            <label for="{{ form.descricao.id_for_label }}">{{ form.descricao.label }}</label>
+            {{ form.descricao }}
+            {% if form.descricao.errors %}
+                <span class="error-message">{{ form.descricao.errors }}</span>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.valor.id_for_label }}">{{ form.valor.label }}</label>
+            {{ form.valor }}
+            {% if form.valor.errors %}
+                <span class="error-message">{{ form.valor.errors }}</span>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.ativo.id_for_label }}" class="checkbox-label">
+                {{ form.ativo }}
+                {{ form.ativo.label }}
+            </label>
+            {% if form.ativo.errors %}
+                <span class="error-message">{{ form.ativo.errors }}</span>
+            {% endif %}
+        </div>
+
+        <div class="form-buttons">
+            <a href="{% url 'mensalidades' %}" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Salvar Plano</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+

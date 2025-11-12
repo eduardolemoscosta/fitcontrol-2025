@@ -3,28 +3,39 @@
 
 {% block content %}
 <header class="page-header">
-    <h2>Mensalidades</h2>
+    <h2>Planos de Mensalidade</h2>
 </header>
 
 <div class="card">
+    {% if planos %}
     <div class="mensalidades-list">
+        {% for plano in planos %}
         <div class="item">
-            <i class="fa-solid fa-wallet"></i>
-            <span>Mensalidade 1 (60R$)</span>
+            <div class="item-content">
+                <i class="fa-solid fa-wallet"></i>
+                <div class="item-info">
+                    <span class="item-title">{{ plano.descricao }}</span>
+                    <span class="item-value">R$ {{ plano.valor|floatformat:2 }}</span>
+                </div>
+            </div>
+            <div class="item-actions">
+                <a href="{% url 'editar_plano' plano.id %}" class="btn-icon" title="Editar">
+                    <i class="fa-solid fa-edit"></i>
+                </a>
+                <a href="{% url 'excluir_plano' plano.id %}" class="btn-icon btn-danger" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir este plano?');">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </div>
         </div>
-        <div class="item">
-            <i class="fa-solid fa-wallet"></i>
-            <span>Mensalidade 2 (90R$)</span>
-        </div>
-        <div class="item">
-            <i class="fa-solid fa-wallet"></i>
-            <span>Mensalidade 3 (120R$)</span>
-        </div>
+        {% endfor %}
     </div>
+    {% else %}
+    <p class="text-empty">Nenhum plano de mensalidade cadastrado.</p>
+    {% endif %}
 
     <div class="content-actions">
-        <a href="#" class="btn btn-primary">
-            <i class="fa-solid fa-plus"></i> Adicionar/Alterar Mensalidades
+        <a href="{% url 'criar_plano' %}" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i> Adicionar Novo Plano
         </a>
     </div>
     

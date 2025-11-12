@@ -10,13 +10,37 @@
     <h3>Alunos Cadastrados</h3>
     <ul class="student-list">
         {% for aluno in alunos %}
-            <li>{{ aluno.nome }}
-                <br>
-                CPF: {{ aluno.cpf }}
-                <br>
-                mail: {{ aluno.email }}</li>
+            <li>
+                <div class="student-info">
+                    <div class="student-name">{{ aluno.nome }}</div>
+                    <div class="student-details">
+                        <span><strong>CPF:</strong> {{ aluno.cpf }}</span>
+                        <span><strong>E-mail:</strong> {{ aluno.email }}</span>
+                        {% if aluno.plano %}
+                            <span class="student-plano {% if not aluno.plano.ativo %}plano-inativo{% endif %}">
+                                <strong>Plano:</strong> {{ aluno.plano.descricao }} - R$ {{ aluno.plano.valor|floatformat:2 }}
+                                {% if not aluno.plano.ativo %}
+                                    <span class="badge-inativo" title="Este plano está inativo">(Inativo)</span>
+                                {% endif %}
+                            </span>
+                        {% else %}
+                            <span class="student-plano"><strong>Plano:</strong> <em>Nenhum plano selecionado</em></span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="student-actions-buttons">
+                    <a href="{% url 'editar_aluno' aluno.id %}" class="btn-icon" title="Editar">
+                        <i class="fa-solid fa-edit"></i>
+                    </a>
+                    <a href="{% url 'excluir_aluno' aluno.id %}" class="btn-icon btn-danger" title="Excluir">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </div>
+            </li>
         {% empty %}
-            <li>Nenhum aluno cadastrado.</li>
+            <li style="text-align: center; padding: 2rem; color: var(--text-color-light); font-style: italic;">
+                Nenhum aluno cadastrado.
+            </li>
         {% endfor %}
     </ul>
     <a href="{% url 'cadastrar_aluno' %}" class="btn btn-primary">Cadastrar novo aluno</a>

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Excluir Aluno - {{ block.super }}{% endblock %}
+
+{% block content %}
+<header class="page-header">
+    <h2>Excluir Aluno</h2>
+</header>
+
+<div class="card">
+    <p>Tem certeza que deseja excluir o aluno <strong>{{ aluno.nome }}</strong>?</p>
+    
+    <div class="student-delete-info" style="margin: 1.5rem 0; padding: 1rem; background-color: var(--card-bg); border-radius: var(--border-radius-small);">
+        <h4 style="margin-bottom: 1rem; color: var(--text-color-dark);">Informações do Aluno:</h4>
+        <p><strong>CPF:</strong> {{ aluno.cpf }}</p>
+        <p><strong>E-mail:</strong> {{ aluno.email }}</p>
+        {% if aluno.plano %}
+            <p><strong>Plano:</strong> {{ aluno.plano.descricao }} - R$ {{ aluno.plano.valor|floatformat:2 }}</p>
+        {% else %}
+            <p><strong>Plano:</strong> <em>Nenhum plano selecionado</em></p>
+        {% endif %}
+    </div>
+    
+    {% if quantidade_mensalidades > 0 %}
+        <p class="text-warning"><strong>Atenção:</strong> Este aluno possui <strong>{{ quantidade_mensalidades }}</strong> mensalidade{{ quantidade_mensalidades|pluralize:"s" }} cadastrada{{ quantidade_mensalidades|pluralize:"s" }}. Todas serão excluídas junto com o aluno.</p>
+    {% else %}
+        <p class="text-warning"><strong>Atenção:</strong> Esta ação não pode ser desfeita.</p>
+    {% endif %}
+
+    <form method="POST" class="form-buttons" style="margin-top: 2rem;">
+        {% csrf_token %}
+        <a href="{% url 'lista_alunos' %}" class="btn btn-secondary">Cancelar</a>
+        <button type="submit" class="btn btn-danger">Excluir Aluno</button>
+    </form>
+</div>
+{% endblock %}
+

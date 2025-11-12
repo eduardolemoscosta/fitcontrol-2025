@@ -15,14 +15,15 @@
     <div class="dashboard-grid">
         <div class="dashboard-card">
             <h4>Alunos Ativos</h4>
-            <p>125</p> </div>
-        <div class="dashboard-card">
-            <h4>Mensalidades Pendentes</h4>
-            <p>12</p>
+            <p>{{ alunos_ativos }}</p>
         </div>
         <div class="dashboard-card">
-            <h4>Aulas Agendadas</h4>
-            <p>34</p>
+            <h4>Mensalidades Pendentes</h4>
+            <p>{{ mensalidades_pendentes }}</p>
+        </div>
+        <div class="dashboard-card">
+            <h4>Mensalidades Vencidas</h4>
+            <p>{{ mensalidades_vencidas }}</p>
         </div>
     </div>
 
@@ -30,13 +31,13 @@
         <a href="{% url 'cadastrar_aluno' %}" class="btn btn-action btn-blue">
             <i class="fa-solid fa-user-plus"></i> Registrar Aluno
         </a>
-        <a href="#" class="btn btn-action btn-green">
+        <a href="{% url 'mensalidades' %}" class="btn btn-action btn-green">
             <i class="fa-solid fa-dollar-sign"></i> Ver Mensalidades
         </a>
-        <a href="#" class="btn btn-action btn-pink">
+        <a href="{% url 'relatorios' %}" class="btn btn-action btn-pink">
             <i class="fa-solid fa-chart-line"></i> Ver Relatórios
         </a>
-        <a href="#" class="btn btn-action btn-red">
+        <a href="{% url 'configuracoes' %}" class="btn btn-action btn-red">
             <i class="fa-solid fa-gear"></i> Configurações
         </a>
     </div>

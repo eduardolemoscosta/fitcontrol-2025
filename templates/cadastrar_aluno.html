@@ -1,24 +1,92 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Cadastrar Aluno - {{ block.super }}{% endblock %}
+{% block title %}{{ titulo|default:"Cadastrar Aluno" }} - {{ block.super }}{% endblock %}
 
 {% block content %}
 <header class="page-header">
-    <h2>Cadastrar Aluno</h2>
+    <h2>{{ titulo|default:"Cadastrar Aluno" }}</h2>
 </header>
 
 <div class="card">
     <form class="form-grid" method="POST">
         {% csrf_token %}
 
-        {% for field in form %}
-            <div class="form-group {% if field.name == 'email' or field.name == 'endereco' %}full-width{% endif %}">
-                {{ field.label_tag }} {{ field }}           </div>
-        {% endfor %}
+        <div class="form-group">
+            <label for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>
+            {{ form.nome }}
+            {% if form.nome.errors %}
+                <span class="error-message">{{ form.nome.errors }}</span>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.cpf.id_for_label }}">{{ form.cpf.label }}</label>
+            {{ form.cpf }}
+            {% if form.cpf.errors %}
+                <span class="error-message">{{ form.cpf.errors }}</span>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.data_nascimento.id_for_label }}">{{ form.data_nascimento.label }}</label>
+            {{ form.data_nascimento }}
+            {% if form.data_nascimento.errors %}
+                <span class="error-message">{{ form.data_nascimento.errors }}</span>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.telefone.id_for_label }}">{{ form.telefone.label }}</label>
+            {{ form.telefone }}
+            {% if form.telefone.errors %}
+                <span class="error-message">{{ form.telefone.errors }}</span>
+            {% endif %}
+        </div>
+
+        <div class="form-group full-width">
+            <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+            {{ form.email }}
+            {% if form.email.errors %}
+                <span class="error-message">{{ form.email.errors }}</span>
+            {% endif %}
+        </div>
+
+        <div class="form-group full-width">
+            <label for="{{ form.endereco.id_for_label }}">{{ form.endereco.label }}</label>
+            {{ form.endereco }}
+            {% if form.endereco.errors %}
+                <span class="error-message">{{ form.endereco.errors }}</span>
+            {% endif %}
+        </div>
+
+        <div class="form-group full-width">
+            <label for="{{ form.plano.id_for_label }}">{{ form.plano.label }}</label>
+            {{ form.plano }}
+            {% if form.plano.errors %}
+                <span class="error-message">{{ form.plano.errors }}</span>
+            {% endif %}
+            {% if aluno and aluno.plano and not aluno.plano.ativo %}
+                <div class="alert-warning" style="margin-top: 0.5rem; padding: 0.75rem; background-color: #FFF3CD; border-left: 4px solid #FFC107; border-radius: var(--border-radius-small);">
+                    <strong>Atenção:</strong> O aluno está usando um plano <strong>inativo</strong> ({{ aluno.plano.descricao }}). 
+                    Recomenda-se selecionar um plano ativo ou remover o plano atual.
+                </div>
+            {% else %}
+                <small style="color: var(--text-color-light); font-size: 0.85rem; margin-top: 0.25rem; display: block;">
+                    Selecione o plano de mensalidade que o aluno está pagando (opcional)
+                </small>
+            {% endif %}
+        </div>
 
         <div class="form-buttons">
-            <button type="submit" class="btn btn-primary">Cadastrar Aluno</button>
+            <a href="{% url 'lista_alunos' %}" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-primary">
+                {% if aluno %}
+                    Salvar Alterações
+                {% else %}
+                    Cadastrar Aluno
+                {% endif %}
+            </button>
         </div>
     </form>
 </div>

@@ -299,6 +299,73 @@ body {
     border-radius: var(--border-radius-small);
     box-shadow: var(--shadow);
     font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+.student-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+}
+.student-actions-buttons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-shrink: 0;
+}
+.student-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color-dark);
+    margin-bottom: 0.5rem;
+}
+.student-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+}
+.student-details span {
+    display: block;
+}
+.student-details strong {
+    color: var(--text-color-dark);
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+.student-plano {
+    color: var(--primary-blue);
+    font-weight: 500;
+}
+.student-plano em {
+    color: var(--text-color-light);
+    font-style: italic;
+}
+.student-plano.plano-inativo {
+    color: #D69E2E;
+}
+.badge-inativo {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background-color: #FFF3CD;
+    color: #856404;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    border: 1px solid #FFC107;
+}
+.alert-warning {
+    color: #856404;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+.alert-warning strong {
+    color: #856404;
 }
 
 .student-actions {
@@ -311,7 +378,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    max-width: 400px;
+    max-width: 100%;
 }
 .mensalidades-list .item {
     background-color: var(--card-bg);
@@ -321,10 +388,95 @@ body {
     font-weight: 500;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 1rem;
 }
-.mensalidades-list .item i {
+.mensalidades-list .item .item-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+.mensalidades-list .item .item-content i {
     color: var(--primary-blue);
+    font-size: 1.5rem;
+}
+.mensalidades-list .item .item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+.mensalidades-list .item .item-title {
+    font-weight: 600;
+    color: var(--text-color-dark);
+    font-size: 1rem;
+}
+.mensalidades-list .item .item-value {
+    font-weight: 500;
+    color: var(--text-color-light);
+    font-size: 0.9rem;
+}
+.mensalidades-list .item .item-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--border-radius-small);
+    background-color: transparent;
+    color: var(--text-color-light);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}
+.btn-icon:hover {
+    background-color: var(--primary-blue);
+    color: #FFF;
+    border-color: var(--primary-blue);
+}
+.btn-icon.btn-danger:hover {
+    background-color: #E53E3E;
+    border-color: #E53E3E;
+    color: #FFF;
+}
+.btn-danger {
+    background-color: #E53E3E;
+    color: #FFF;
+}
+.btn-danger:hover {
+    background-color: #C53030;
+}
+.text-empty {
+    color: var(--text-color-light);
+    font-style: italic;
+    text-align: center;
+    padding: 2rem;
+}
+.text-warning {
+    color: #D69E2E;
+    font-weight: 500;
+}
+.error-message {
+    color: #E53E3E;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+.checkbox-label input[type="checkbox"] {
+    width: auto;
+    cursor: pointer;
 }
 
 /* TELA DE RELATÓRIOS */
@@ -353,4 +505,102 @@ body {
     border-top: 1px solid var(--border-color);
     display: flex;
     justify-content: flex-end;
+}
+
+/* TELA DE INÍCIO - DASHBOARD */
+.welcome-banner {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius-small);
+}
+.welcome-banner h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color-dark);
+    margin: 0;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.dashboard-card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-small);
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+.dashboard-card h4 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-color-light);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.dashboard-card p {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin: 0;
+}
+
+.dashboard-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.5rem;
+    border-radius: var(--border-radius-small);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-action.btn-blue {
+    background-color: #4299E1;
+    color: #FFF;
+}
+.btn-action.btn-blue:hover {
+    background-color: #3182CE;
+}
+
+.btn-action.btn-green {
+    background-color: #48BB78;
+    color: #FFF;
+}
+.btn-action.btn-green:hover {
+    background-color: #38A169;
+}
+
+.btn-action.btn-pink {
+    background-color: #ED64A6;
+    color: #FFF;
+}
+.btn-action.btn-pink:hover {
+    background-color: #D53F8C;
+}
+
+.btn-action.btn-red {
+    background-color: #F56565;
+    color: #FFF;
+}
+.btn-action.btn-red:hover {
+    background-color: #E53E3E;
 }
