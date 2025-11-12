@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "C:\Users\20221181110033\Desktop\apoo\fitcontrol_django\venv"
+set -gx VIRTUAL_ENV "C:\Users\20221181110033\Desktop\eduardo projeto\fitcontrol-2025\venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/Scripts" $PATH

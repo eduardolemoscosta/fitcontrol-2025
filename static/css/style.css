@@ -40,22 +40,82 @@ body {
     flex: 0 0 260px;
     background-color: var(--sidebar-dark-bg);
     padding: 2.5rem 1.5rem;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.sidebar.collapsed {
+    flex: 0 0 80px;
+    padding: 2.5rem 0.8rem;
 }
 
 .main-content {
     flex: 1;
     padding: 2.5rem;
     overflow-y: auto;
+    transition: margin-left 0.3s ease-in-out;
 }
 
 /* ---- BARRA LATERAL (SIDEBAR) ---- */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3.5rem;
+    gap: 1rem;
+    position: relative;
+}
+
+.sidebar.collapsed .sidebar-header {
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
 .logo {
     color: var(--primary-blue);
     text-align: left;
-    margin-bottom: 3.5rem;
     font-weight: 600;
     font-size: 1.8rem;
     padding-left: 0.5rem;
+    white-space: nowrap;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+}
+
+.sidebar.collapsed .logo {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-toggle {
+    background: transparent;
+    border: none;
+    color: var(--sidebar-text);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--border-radius-small);
+    transition: all 0.2s ease-in-out;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    min-height: 32px;
+}
+
+.sidebar-toggle:hover {
+    color: var(--sidebar-text-hover);
+    background-color: #2D3748;
+}
+
+.sidebar.collapsed .sidebar-toggle {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .sidebar-nav ul {
@@ -76,6 +136,25 @@ body {
     padding: 0.8rem 1rem;
     border-radius: var(--border-radius-small);
     transition: all 0.2s ease-in-out;
+    position: relative;
+    justify-content: flex-start;
+}
+
+.sidebar.collapsed .sidebar-nav a {
+    justify-content: center;
+    padding: 0.8rem;
+}
+
+.nav-text {
+    white-space: nowrap;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+}
+
+.sidebar.collapsed .nav-text {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
 }
 
 .sidebar-nav a:hover {
@@ -92,6 +171,35 @@ body {
     font-size: 1.1rem;
     width: 20px; /* Alinha os textos */
     text-align: center;
+    flex-shrink: 0;
+}
+
+.sidebar.collapsed .sidebar-nav a i {
+    width: auto;
+}
+
+/* Tooltip quando a sidebar está retraída */
+.sidebar.collapsed .sidebar-nav a::after {
+    content: attr(title);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--sidebar-dark-bg);
+    color: var(--sidebar-text-hover);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-small);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+    margin-left: 0.5rem;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+}
+
+.sidebar.collapsed .sidebar-nav a:hover::after {
+    opacity: 1;
 }
 
 /* ---- CONTEÚDO PRINCIPAL ---- */

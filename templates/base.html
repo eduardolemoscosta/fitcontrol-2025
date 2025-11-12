@@ -13,16 +13,21 @@
 </head>
 <body>
     <div class="app-container">
-        <aside class="sidebar">
-            <h1 class="logo">FitControl</h1>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">FIT</h1>
+                <button class="sidebar-toggle" id="sidebarToggle" aria-label="Alternar sidebar">
+                    <i class="fa-solid fa-chevron-left" id="sidebarToggleIcon"></i>
+                </button>
+            </div>
             <nav class="sidebar-nav">
                 <ul>
-                    <li><a href="{% url 'inicio' %}"><i class="fa-solid fa-house"></i> Início</a></li>
-                    <li><a href="{% url 'lista_alunos' %}"><i class="fa-solid fa-users"></i> Alunos</a></li>
-                    <li><a href="{% url 'cadastrar_aluno' %}"><i class="fa-solid fa-user-plus"></i> Cadastrar Alunos</a></li>
-                    <li><a href="{% url 'mensalidades' %}"><i class="fa-solid fa-file-invoice-dollar"></i> Mensalidades</a></li>
-<li><a href="{% url 'relatorios' %}"><i class="fa-solid fa-chart-line"></i> Relatórios</a></li>
-<li><a href="{% url 'configuracoes' %}"><i class="fa-solid fa-gear"></i> Configurações</a></li>
+                    <li><a href="{% url 'inicio' %}" title="Início"><i class="fa-solid fa-house"></i> <span class="nav-text">Início</span></a></li>
+                    <li><a href="{% url 'lista_alunos' %}" title="Alunos"><i class="fa-solid fa-users"></i> <span class="nav-text">Alunos</span></a></li>
+                    <li><a href="{% url 'cadastrar_aluno' %}" title="Cadastrar Alunos"><i class="fa-solid fa-user-plus"></i> <span class="nav-text">Cadastrar Alunos</span></a></li>
+                    <li><a href="{% url 'mensalidades' %}" title="Mensalidades"><i class="fa-solid fa-file-invoice-dollar"></i> <span class="nav-text">Mensalidades</span></a></li>
+                    <li><a href="{% url 'relatorios' %}" title="Relatórios"><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Relatórios</span></a></li>
+                    <li><a href="{% url 'configuracoes' %}" title="Configurações"><i class="fa-solid fa-gear"></i> <span class="nav-text">Configurações</span></a></li>
                 </ul>
             </nav>
         </aside>
@@ -32,6 +37,38 @@
             {% endblock %}
         </main>
     </div>
+
+    <script>
+        // Funcionalidade de retração da sidebar
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebarIcon = document.getElementById('sidebarToggleIcon');
+        
+        // Verifica se há um estado salvo no localStorage
+        const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+        if (isCollapsed) {
+            sidebar.classList.add('collapsed');
+            sidebarIcon.classList.remove('fa-chevron-left');
+            sidebarIcon.classList.add('fa-chevron-right');
+        }
+        
+        sidebarToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('collapsed');
+            const collapsed = sidebar.classList.contains('collapsed');
+            
+            // Atualiza o ícone
+            if (collapsed) {
+                sidebarIcon.classList.remove('fa-chevron-left');
+                sidebarIcon.classList.add('fa-chevron-right');
+            } else {
+                sidebarIcon.classList.remove('fa-chevron-right');
+                sidebarIcon.classList.add('fa-chevron-left');
+            }
+            
+            // Salva o estado no localStorage
+            localStorage.setItem('sidebarCollapsed', collapsed);
+        });
+    </script>
 
     </body>
 </html>
